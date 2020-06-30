@@ -1,0 +1,48 @@
+.card {
+  border: none;
+}
+
+.chat {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  min-height: 100%;
+}
+
+.chat li {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dotted #b3a9a9;
+}
+
+.rounded-circle {
+  height: 50px;
+  width: 50px;
+}
+
+.card-body {
+  overflow-y: scroll;
+  height: 600px;
+}
+
+.mat-card-reshaped {
+  background-color: rgba(255, 255, 255, 0.787);
+  border-radius: 8px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  min-height: 750px;
+}
+
+.mat-card {
+  background-color: rgba(255, 255, 255, 0.787);
+  border-radius: 8px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.fullwidth {
+  min-width: 100%;
+}

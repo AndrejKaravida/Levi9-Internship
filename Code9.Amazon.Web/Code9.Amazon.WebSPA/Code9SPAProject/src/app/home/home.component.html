@@ -1,0 +1,142 @@
+<div class="container mt-5">
+  <div class="row">
+    <h1 class="title">Dobrodošli na Amazon. Sva vozila na jednom mestu.</h1>
+  </div>
+  <form>
+    <div class="form-row">
+      <div class="col">
+        <mat-card class="smallheight">
+          <mat-form-field class="fullheight">
+            <mat-label>Marka automobila:</mat-label>
+            <mat-select
+              [(ngModel)]="vehicleParams.make"
+              name="make"
+              (ngModelChange)="populateModels()"
+            >
+              <mat-option *ngFor="let make of makes" [value]="make.id">
+                {{ make.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card class="smallheight">
+          <mat-form-field class="fullheight">
+            <mat-label>Model automobila:</mat-label>
+            <mat-select [(ngModel)]="vehicleParams.model" name="model">
+              <mat-option *ngFor="let model of models" [value]="model.id">{{
+                model.name
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card class="smallheight">
+          <mat-form-field class="fullheight">
+            <mat-label>Gorivo:</mat-label>
+            <mat-select [(ngModel)]="vehicleParams.fuel" name="fuel">
+              <mat-option *ngFor="let fuel of fuelList" [value]="fuel">
+                {{ fuel }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card class="smallheight">
+          <mat-form-field class="fullheight">
+            <mat-label>Grad:</mat-label>
+            <mat-select [(ngModel)]="vehicleParams.city" name="city">
+              <mat-option *ngFor="let city of citiesList" [value]="city">
+                {{ city }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <mat-card class="smallheight">
+          <mat-form-field class="fullheight">
+            <mat-label>Kilometraža do:</mat-label>
+            <input matInput [(ngModel)]="vehicleParams.maxMileage" name="mileage" />
+          </mat-form-field>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card class="smallheight">
+          <mat-form-field class="fullheight">
+            <mat-label>Cena od:</mat-label>
+            <input matInput [(ngModel)]="vehicleParams.minPrice" name="minPrice" />
+          </mat-form-field>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card class="smallheight">
+          <mat-form-field class="fullheight">
+            <mat-label>Cena do:</mat-label>
+            <input matInput [(ngModel)]="vehicleParams.maxPrice" name="maxPrice" />
+          </mat-form-field>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card class="smallheight">
+          <mat-form-field class="fullheight">
+            <mat-label>Godište od:</mat-label>
+            <input matInput [(ngModel)]="vehicleParams.minYear" name="minYear" />
+          </mat-form-field>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card class="smallheight">
+          <mat-form-field class="fullheight">
+            <mat-label>Godište do:</mat-label>
+            <input matInput [(ngModel)]="vehicleParams.maxYear" name="maxYear" />
+          </mat-form-field>
+        </mat-card>
+      </div>
+    </div>
+    <div class="searchButton">
+      <button mat-raised-button color="accent" (click)="loadVehicles()">Pretraži</button>
+      <button mat-raised-button color="warn" class="resetButton" (click)="reset()">Resetuj</button>
+    </div>
+  </form>
+  <div>
+    <mat-card class="fullwidth">
+      <div class="row justify-content-end">
+        <div>
+          <button mat-raised-button class="newButton" color="accent" (click)="addNewVehicle()">Dodaj oglas</button>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Sortiraj po ceni:</mat-label>
+            <mat-select [(value)]="vehicleParams.orderBy">
+              <mat-option value="None">None</mat-option>
+              <mat-option value="Ascending">Rastuće</mat-option>
+              <mat-option value="Descending">Opadajuće</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button class="ml-2" (click)="loadVehicles()">Sortiraj</button>
+        </div>
+      </div>
+      <div class="row">
+        <div *ngFor="let vehicle of vehicles" class="col-lg-3 col-md-6 col-sm-12">
+          <app-vehicle-card [vehicle]="vehicle"></app-vehicle-card>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <div class="d-flex justify-content-center">
+    <pagination
+      [boundaryLinks]="true"
+      [totalItems]="pagination.totalItems"
+      [(ngModel)]="pagination.currentPage"
+      [itemsPerPage]="pagination.itemsPerPage"
+      (pageChanged)="pageChanged($event)"
+    >
+    </pagination>
+  </div>
+</div>

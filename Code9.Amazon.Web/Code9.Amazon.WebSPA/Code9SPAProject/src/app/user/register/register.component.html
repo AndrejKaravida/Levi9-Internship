@@ -1,0 +1,126 @@
+<form [formGroup]="formGroup" (submit)="signUp()">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input class="form-control" formControlName="username" />
+    <label
+      class="text-danger"
+      *ngIf="
+        formGroup.get('username').touched &&
+        formGroup.get('username').errors?.required
+      "
+      >This field is mandatory.</label
+    >
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input class="form-control" formControlName="email" />
+    <label
+      class="text-danger"
+      *ngIf="
+        formGroup.get('email').touched && formGroup.get('email').errors?.email
+      "
+      >Invalid email address.</label
+    >
+  </div>
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input class="form-control" formControlName="firstName" />
+    <label
+      class="text-danger"
+      *ngIf="
+        formGroup.get('firstName').touched &&
+        formGroup.get('firstName').errors?.required
+      "
+      >This field is mandatory.</label
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input class="form-control" formControlName="lastName" />
+    <label
+      class="text-danger"
+      *ngIf="
+        formGroup.get('lastName').touched &&
+        formGroup.get('lastName').errors?.required
+      "
+      >This field is mandatory.</label
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" formControlName="password" />
+    <label
+      class="text-danger"
+      *ngIf="
+        formGroup.get('password').touched &&
+        formGroup.get('password').errors?.required
+      "
+      >This field is mandatory.</label
+    >
+    <label
+      class="text-danger"
+      *ngIf="
+        formGroup.get('password').touched &&
+        formGroup.get('password').errors?.minlength
+      "
+    >
+      Must be at least 8 characters!
+    </label>
+    <label
+      class="text-danger"
+      *ngIf="
+        formGroup.get('password').touched &&
+        formGroup.get('password').errors?.hasNumber
+      "
+    >
+      Must contain at least 1 number!
+    </label>
+    <label
+      class="text-danger"
+      *ngIf="
+        formGroup.get('password').touched &&
+        formGroup.get('password').errors?.hasCapitalCase
+      "
+    >
+      Must contain at least 1 letter in Capital Case!
+    </label>
+    <label
+      class="text-danger"
+      *ngIf="
+        formGroup.get('password').touched &&
+        formGroup.get('password').errors?.hasSmallCase
+      "
+    >
+      Must contain at least 1 letter in Small Case!
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="confirmPassword">Confirm Password</label>
+    <input
+      type="password"
+      class="form-control"
+      formControlName="confirmPassword"
+    />
+    <label
+      class="text-danger"
+      *ngIf="
+        formGroup.get('confirmPassword').touched &&
+        formGroup.get('confirmPassword').errors?.NoPassswordMatch
+      "
+      >Confirm Password does not match.</label
+    >
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-8 offset-md-2">
+      <button
+        type="submit"
+        class="btn btn-lg btn-block"
+        [disabled]="!formGroup.valid"
+      >
+        Sign Up
+      </button>
+    </div>
+  </div>
+</form>

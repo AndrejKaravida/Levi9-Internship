@@ -1,0 +1,175 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <mat-card>
+        <div class="tab-panel">
+          <tabset>
+            <tab heading="Podaci o vozilu">
+              <form #editForm="ngForm">
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Proizvodjac vozila</mat-label>
+                      <mat-select
+                        [(ngModel)]="vehicle.makeId"
+                        name="makeId"
+                        (ngModelChange)="populateModels()"
+                      >
+                        <mat-option *ngFor="let make of makes" [value]="make.id">{{
+                          make.name
+                        }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Model vozila</mat-label>
+                      <mat-select [(ngModel)]="vehicle.modelId" name="modelId" required>
+                        <mat-option *ngFor="let model of models" [value]="model.id">{{
+                          model.name
+                        }}</mat-option>
+                      </mat-select>
+                      <mat-hint align="end">Prvo izaberite proizvodjaca</mat-hint>
+                    </mat-form-field>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Tip goriva</mat-label>
+                      <mat-select [(ngModel)]="vehicle.fuelType" name="fuelType">
+                        <mat-option *ngFor="let fuelType of fuelList" [value]="fuelType">
+                          {{ fuelType }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Grad</mat-label>
+                      <input
+                        matInput
+                        #input
+                        [(ngModel)]="vehicle.city"
+                        name="city"
+                        placeholder="Primer: Novi Sad"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Godina proizvodnje</mat-label>
+                      <input
+                        matInput
+                        #input
+                        [(ngModel)]="vehicle.productionYear"
+                        name="productionYear"
+                        type="number"
+                        placeholder="Primer: 2015"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Kilometraza</mat-label>
+                      <input
+                        matInput
+                        [(ngModel)]="vehicle.mileage"
+                        name="mileage"
+                        type="number"
+                        class="example-right-align"
+                      />
+                      <span matSuffix>km</span>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label id="example-radio-group-label">Da li je vozilo registrovano?</label>
+                    <div class="vehicle-radio-button">
+                      <label for="registered" class="radio-inline">
+                        <input
+                          type="radio"
+                          name="isRegistered"
+                          id="registered"
+                          [value]="true"
+                          [(ngModel)]="vehicle.isRegistered"
+                        />
+                        Da
+                      </label>
+                    </div>
+                    <div class="vehicle-radio-button">
+                      <label for="notRegistered" class="radio-inline">
+                        <input
+                          type="radio"
+                          name="isRegistered"
+                          id="notRegistered"
+                          [value]="false"
+                          [(ngModel)]="vehicle.isRegistered"
+                        />
+                        Ne
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <mat-form-field>
+                      <mat-label>Oprema</mat-label>
+                      <mat-select multiple [(ngModel)]="vehicle.features" name="features">
+                        <mat-option *ngFor="let feature of features" [value]="feature.id">
+                          {{ feature.name }}</mat-option
+                        >
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Cena</mat-label>
+                      <input
+                        matInput
+                        type="number"
+                        class="example-right-align"
+                        [(ngModel)]="vehicle.price"
+                        name="price"
+                        type="number"
+                      />
+                      <span matSuffix>€</span>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Opis oglasa</mat-label>
+                      <textarea
+                        matInput
+                        #input
+                        [(ngModel)]="vehicle.description"
+                        name="description"
+                        placeholder="..."
+                        maxlength="500"
+                      ></textarea>
+                      <mat-hint align="end">{{ input.value?.length || 0 }}/500</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-8"></div>
+                  <div class="form-group col-md-2">
+                    <button mat-raised-button (click)="submit()" color="primary">Sacuvaj</button>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <button mat-raised-button color="warn" (click)="cancelChanges()">Odbaci</button>
+                  </div>
+                </div>
+              </form>
+            </tab>
+            <tab heading="Slike" *ngIf="vehicle.id !== 0">
+              <app-photo-upload [photos]="images" [vehicleId]="vehicle.id"></app-photo-upload>
+            </tab>
+          </tabset>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

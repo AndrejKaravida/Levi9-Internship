@@ -1,0 +1,60 @@
+.mat-card {
+  background-color: rgba(255, 255, 255, 0.787);
+  border-radius: 8px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+input {
+  max-width: 210px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.fullwidth {
+  min-width: 100%;
+}
+
+.container { 
+  min-height: 100%;
+}
+
+.row {
+  margin-right: 10px;
+}
+
+.newButton { 
+  margin-right: 200px;
+}
+
+.searchButton {
+  width: 100%;
+  text-align: center;
+}
+
+.smallheight {
+  height: 70px;
+}
+
+.resetButton {
+  margin-left: 20px;
+}
+
+.fullheight {
+  height: 100px;
+  width: 100%;
+}
+
+.title {
+  color: white;
+  border: 1px black;
+  font-size: 32px;
+  font-weight: bold;
+  margin-left: 50px;
+  margin-top: 50px;
+  margin-bottom: 70px;
+  box-sizing: border-box;
+  font-style: italic;
+}

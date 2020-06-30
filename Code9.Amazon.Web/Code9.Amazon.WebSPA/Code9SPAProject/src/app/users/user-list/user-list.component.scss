@@ -1,0 +1,47 @@
+.img-thumbnail {
+  margin: 25px;
+  width: 85%;
+  height: 85%;
+}
+
+.card-body {
+  padding: 0 25px;
+}
+
+.container {
+  min-height: 100%;
+}
+
+.card-footer {
+  padding: 10px 15px;
+  background-color: #fff;
+  border-top: none;
+}
+
+.mat-card {
+  background-color: rgba(255, 255, 255, 0.787);
+  border-radius: 8px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.fullwidth {
+  min-width: 100%;
+}
+
+.title {
+  color: white;
+  border: 1px black;
+  font-size: 32px;
+  font-weight: bold;
+  margin-left: 50px;
+  margin-top: 50px;
+  margin-bottom: 70px;
+  box-sizing: border-box;
+  font-style: italic;
+}
+
+.fullheight {
+  height: 100px;
+  width: 100%;
+}

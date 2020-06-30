@@ -1,0 +1,35 @@
+<div>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container" style="height: 60px !important;">
+      <a class="navbar-brand" [routerLink]="['home']">Amazon Trgovina</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" *ngIf="authService.loggedIn()" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['home']">Početna</a>
+        </li>
+        <li class="nav-item" *ngIf="!authService.loggedIn()" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['user/login']">Ulogujte se</a>
+        </li>
+        <li class="nav-item" *ngIf="!authService.loggedIn()" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['user/registration']">Registracija</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.loggedIn()" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['users']">Korisnici</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.loggedIn()" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['messages']">Poruke</a>
+        </li>
+      </ul>
+
+      <div *ngIf="authService.loggedIn()" class="dropdown" dropdown style="cursor: pointer;">
+        <a class="dropdown-toggle text-light" dropdownToggle>
+          Dobrodošli {{user.firstName }} {{user.lastName}}
+        </a>
+        <div class="dropdown-menu mt-3" *dropdownMenu>
+          <a class="dropdown-item" (click)="authService.logOut()">
+            <i class="fa fa-sign-out"></i> Izlogujte se</a
+          >
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

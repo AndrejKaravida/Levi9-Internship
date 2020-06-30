@@ -1,0 +1,54 @@
+.card-body {
+  padding: 0 25px;
+}
+
+.thumbnail {
+  width: 85%;
+  height: 85%;
+  margin: 25px;
+}
+
+.gallery {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.card-footer {
+  padding: 10px 15px;
+  background-color: #fff;
+  border-top: none;
+}
+
+.commentcard { 
+  border-radius: 8px;
+  margin-top: 30px;
+}
+
+.no-comment { 
+  margin-top: 40px;
+  text-align: center;
+}
+
+.mat-card-reshaped {
+  background-color: rgba(255, 255, 255, 0.787);
+  border-radius: 8px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  min-height: 800px;
+}
+
+.mat-sidenav-container,
+.mat-sidenav-content,
+.mat-tab-body-content {
+  transform: none !important;
+}
+
+.dodajKomentar { 
+  text-align: center;
+  margin-top: 30px;
+}
+
+.divider { 
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

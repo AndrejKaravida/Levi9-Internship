@@ -1,0 +1,52 @@
+<div>
+  <div class="titlewrapper">
+    <span class="title">Dodajte tekst komentara:</span>
+  </div>
+
+  <hr />
+  <form [formGroup]="formGroup">
+    <div class="mt-4">
+      <span class="mr-3 title">Text:</span>
+      <mat-form-field class="fullWidth" appearance="outline">
+        <textarea
+          matInput
+          class="inputField"
+          id="text"
+          formControlName="text"
+          [ngClass]="
+            formGroup.controls['text'].invalid && formGroup.controls['text'].touched
+              ? 'is-invalid'
+              : ''
+          "
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <label
+      class="col"
+      style="color: red;"
+      *ngIf="
+        (formGroup.controls['text'].touched && formGroup.controls['text'].hasError('required')) &&
+        formGroup.controls['text'].hasError('minlength')
+      "
+    >
+      Must be at least 10 characters!
+    </label>
+
+    <label
+      class="col"
+      style="color: red;"
+      *ngIf="
+        (formGroup.controls['text'].touched && formGroup.controls['text'].hasError('required')) &&
+        formGroup.controls['text'].hasError('maxlength')
+      "
+    >
+      Must be less than 500 characters!
+    </label>
+  </form>
+
+  <div class="mt-5">
+    <button mat-raised-button (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" class="ml-2" (click)="makeComment()">Dodaj komentar</button>
+  </div>
+</div>

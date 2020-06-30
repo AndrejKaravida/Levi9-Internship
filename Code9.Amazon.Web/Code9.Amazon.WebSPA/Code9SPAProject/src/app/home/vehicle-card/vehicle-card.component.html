@@ -1,0 +1,15 @@
+<div class="card mb-4">
+  <div class="card-img-wrapper" style="border-bottom: 1px solid black;">
+    <img
+      class="card-img"
+      style="position: absolute; bottom: 0px;"
+      src="{{photoUrl}}"
+      alt=""
+    />
+  </div>
+  <span>{{ vehicle.make.name }} {{ vehicle.model.name }}</span>
+  <span class="price">{{ vehicle.price | currency }}</span>
+  <button type="button" class="details" aria-busy="false" (click)="onVehicleDetails()">
+    Detaljnije
+  </button>
+</div>

@@ -1,0 +1,94 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-4">
+      <mat-card class="mat-card-reshaped">
+        <img class="thumbnail" src="{{ photoUrl }}" alt="" />
+        <div class="card-body">
+          <div>
+            <strong>Proizvodjač:</strong>
+            <p>{{ vehicle.make.name }}</p>
+          </div>
+          <div>
+            <strong>Model:</strong>
+            <p>{{ vehicle.model.name }}</p>
+          </div>
+          <div>
+            <strong>Cena:</strong>
+            <p>{{ vehicle.price | currency }}</p>
+          </div>
+          <div>
+            <strong>Registrovan:</strong>
+            <p>{{ vehicle.isRegistered | registration }}</p>
+          </div>
+          <div>
+            <strong>Kilometraža:</strong>
+            <p>{{ vehicle.mileage }} km</p>
+          </div>
+          <div>
+            <strong>Godište:</strong>
+            <p>{{ vehicle.productionYear }}</p>
+          </div>
+          <div>
+            <strong>Vrsta goriva:</strong>
+            <p>{{ vehicle.fuelType }}</p>
+          </div>
+          <br />
+          <ng-container *ngIf="vehicle.userId != userId">
+            <button mat-button color="primary" [routerLink]="['/chat/' + vehicle.userId]">
+              Kontaktirajte vlasnika
+            </button>
+          </ng-container>
+
+          <ng-container *ngIf="vehicle.userId == userId">
+            <button mat-stroked-button (click)="deleteVehicle()" class="mr-2" color="warn">
+              Obrisi
+            </button>
+            <button mat-stroked-button (click)="editVehicle()" color="primary">Izmeni</button>
+          </ng-container>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-sm-8">
+      <mat-card class="mat-card-reshaped">
+        <div class="tab-panel">
+          <tabset>
+            <tab heading="Oprema">
+              <mat-list role="list">
+                <ng-container *ngFor="let feature of vehicle.features">
+                  <mat-list-item role="listitem"> &#8226; {{ feature.name }} </mat-list-item>
+                </ng-container>
+              </mat-list>
+              <br />
+              <div>
+                <h3>Opis</h3>
+                <p>{{ vehicle.description }}</p>
+              </div>
+            </tab>
+            <tab heading="Galerija">
+              <div class="gallery">
+                <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+              </div>
+            </tab>
+            <tab heading="Komentari korisnika">
+              <div class="dodajKomentar">
+                <button mat-raised-button color="primary" (click)="makeNewComment()">
+                  Dodaj komentar
+                </button>
+              </div>
+              <mat-divider class="divider"></mat-divider>
+              <div *ngIf="comments.length === 0" class="no-comment">
+                <h6>Za ovo vozilo trenutno nema komentara. Ostavite prvi komentar!</h6>
+              </div>
+              <div *ngFor="let comment of comments">
+                <mat-card class="commentcard">
+                  <b>Autor:</b> {{ comment.username }} <br />
+                  <b>Komentar:</b> {{ comment.text }}
+                </mat-card>
+              </div>
+            </tab>
+          </tabset>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

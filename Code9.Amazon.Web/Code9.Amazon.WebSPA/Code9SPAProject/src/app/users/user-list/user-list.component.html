@@ -1,0 +1,24 @@
+<div class="container mt-3">
+  <div class="row">
+    <h1 class="title">Korisnici</h1>
+  </div>
+  <div>
+    <mat-card class="fullwidth">
+      <div class="row">
+        <div *ngFor="let user of users" class="col-lg-3 col-md-6 col-sm-12">
+          <app-user-card [user]="user"></app-user-card>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <div class="d-flex justify-content-center">
+    <pagination
+      [boundaryLinks]="true"
+      [totalItems]="pagination.totalItems"
+      [(ngModel)]="pagination.currentPage"
+      [itemsPerPage]="pagination.itemsPerPage"
+      (pageChanged)="pageChanged($event)"
+    >
+    </pagination>
+  </div>
+</div>
